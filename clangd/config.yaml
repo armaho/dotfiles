@@ -1,0 +1,7 @@
+---
+If:
+  PathMatch: ".*\\.(tpp|ipp|inl|hpp|hxx|cc|cpp|cxx)$"
+
+CompileFlags:
+  Add: ["-xc++"]
+---
