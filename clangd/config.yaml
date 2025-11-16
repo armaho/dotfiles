@@ -1,3 +1,6 @@
+# macOS: ~/Library/Preferences/clangd/config.yaml
+# Linux and others: $XDG_CONFIG_HOME/clangd/config.yaml, typically ~/.config/clangd/config.yaml
+
 ---
 If:
   PathMatch: ".*\\.(tpp|ipp|inl|hpp|hxx|cc|cpp|cxx)$"
