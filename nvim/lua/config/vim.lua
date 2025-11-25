@@ -6,6 +6,7 @@ vim.o.scrolloff = 10
 vim.o.mouse = 'a'
 
 vim.o.clipboard = 'unnamedplus'
+vim.g.clipboard = 'osc52'
 
 vim.o.cursorline = true
 
