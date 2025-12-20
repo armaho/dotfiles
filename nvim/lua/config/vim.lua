@@ -18,6 +18,10 @@ vim.o.expandtab = true
 
 vim.o.shell = os.getenv("SHELL")
 
+vim.o.wrap = true
+vim.o.linebreak = true
+vim.o.showbreak = "↪ "
+
 vim.keymap.set('t', '<C-[><C-[>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
