@@ -5,8 +5,11 @@ vim.o.scrolloff = 10
 
 vim.o.mouse = 'a'
 
-vim.o.clipboard = 'unnamedplus'
-vim.g.clipboard = 'osc52'
+if vim.fn.has("macunix") == 1 then
+  vim.o.clipboard = "unnamedplus"
+else
+  vim.g.clipboard = "osc52"
+end
 
 vim.o.cursorline = true
 
