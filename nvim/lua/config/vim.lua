@@ -8,6 +8,7 @@ vim.o.mouse = 'a'
 if vim.fn.has("macunix") == 1 then
   vim.o.clipboard = "unnamedplus"
 else
+  vim.o.clipboard = "unnamedplus"
   vim.g.clipboard = "osc52"
 end
 
