@@ -62,6 +62,8 @@ vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Right arrow' })
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { noremap = true, silent = true, desc = "Go to definition" })
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, { noremap = true, silent = true, desc = "Go to declaration" })
 
+vim.keymap.set('n', '<leader>ld', vim.diagnostic.open_float, { desc = "open diagnostic for current line" })
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking (copying) text',
   group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
