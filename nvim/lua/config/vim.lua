@@ -72,16 +72,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    local clients = vim.lsp.get_clients({ bufnr = args.buf })
-    if #clients > 0 then
-      vim.lsp.buf.format({ bufnr = args.buf })
-    end
-  end,
-})
-
 vim.diagnostic.config({
   virtual_text = {
     prefix = '●',
