@@ -19,8 +19,6 @@ return {
     { "<leader>ls", function() require("nvim-ros2").pickers.services() end, desc = "[ROS 2]: List services" },
   },
   config = function()
-    print("bluh bluh")
-
     local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
     vim.filetype.add({
