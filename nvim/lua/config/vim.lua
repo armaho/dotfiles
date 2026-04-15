@@ -26,6 +26,8 @@ vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.showbreak = "↪ "
 
+vim.o.spell = true
+
 vim.keymap.set('t', '<C-[><C-[>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
