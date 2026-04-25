@@ -6,7 +6,7 @@ return {
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         local bufnr = args.buf
 
-        if not client.server_capabilities.documentFormattingProvider then
+        if not client.server_capabilities.documentRangeFormattingProvider then
           vim.api.nvim_create_autocmd("BufWritePre", {
             pattern = "*",
             callback = function(args)
@@ -16,6 +16,7 @@ return {
               end
             end,
           })
+          return
         end
 
         local group = vim.api.nvim_create_augroup(
