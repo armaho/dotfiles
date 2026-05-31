@@ -19,8 +19,6 @@ return {
     { "<leader>ls", function() require("nvim-ros2").pickers.services() end, desc = "[ROS 2]: List services" },
   },
   config = function()
-    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
     vim.filetype.add({
       extension = {
         msg = "ros2",
@@ -29,15 +27,17 @@ return {
       },
     })
 
-    parser_config.ros2 = {
-      install_info = {
-        url = "~/.local/share/nvim/lazy/nvim-ros2/treesitter-ros2",
-        files = {"src/parser.c"},
-        branch = "main",
-        generate_requires_npm = false,
-        requires_generate_from_grammar = false,
-      },
-      filetype = "ros2",
-    }
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "TSUpdate",
+      callback = function()
+        require("nvim-treesitter.parsers").ros2 = {
+          install_info = {
+            path = "~/.local/share/nvim/lazy/nvim-ros2/treesitter-ros2",
+            generate = false,
+          },
+          filetype = "ros2",
+        }
+      end,
+    })
   end,
 }
