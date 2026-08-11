@@ -7,6 +7,13 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
     },
     config = function()
+      local telescope = require('telescope')
+      telescope.setup {
+        extensions = {
+          fzf = {}
+        }
+      }
+      telescope.load_extension('fzf')
       local builtin = require('telescope.builtin')
 
       vim.keymap.set("n", "<leader>fh", builtin.help_tags,
