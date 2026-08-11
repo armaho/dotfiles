@@ -38,6 +38,9 @@ vim.keymap.set('s', '<C-k>', '<Up>', { desc = 'Up arrow' })
 vim.keymap.set('i', '<C-j>', '<Down>', { desc = 'Down arrow' })
 vim.keymap.set('i', '<C-l>', '<Right>', { desc = 'Right arrow' })
 
+vim.keymap.set('n', '<leader>cn', '<cmd>cn<CR>', { desc = 'quick fix: next' })
+vim.keymap.set('n', '<leader>cp', '<cmd>cp<CR>', { desc = 'quick fix: previous' })
+vim.keymap.set('n', '<leader>cc', '<cmd>cc<CR>', { desc = 'quick fix: close' })
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {
   noremap = true,
   silent = true,
