@@ -63,12 +63,23 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.diagnostic.config({
-  virtual_text = {
-    prefix = '●',
-    spacing = 2,
+  underline = {
+    severity = {
+      min = vim.diagnostic.severity.INFO
+    }
   },
-  signs = true,
-  underline = true,
+  virtual_text = {
+    prefix = "●",
+    spacing = 4,
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = "✘",
+      [vim.diagnostic.severity.WARN]  = "▲",
+      [vim.diagnostic.severity.HINT]  = "⚑",
+      [vim.diagnostic.severity.INFO]  = "»",
+    },
+  },
   update_in_insert = false,
   severity_sort = true,
 })
