@@ -11,6 +11,8 @@
 - `pyright`
 - `marksman`
 - `json-lsp`
+- `codelldb`
+- `local-lua-debugger-vscode`
 
 ### Notes
 
@@ -28,8 +30,30 @@ $ pip uninstall pygls
 $ pip install "pygls>=1.1.1, <2.0.0"
 ```
 
+---
+
+Inside `local-lua-debugger-vscode/extension/debugger/lldebugger.lua` there's this loop
+which does not work on lua5.5:
+
+```lua
+for path in scriptRootsStr:gmatch("[^;]+") do
+  path = Path.format(path) .. Path.separator
+  table.insert(scriptRoots, path)
+end
+```
+
+Manually change it to:
+
+```lua
+for path in scriptRootsStr:gmatch("[^;]+") do
+  table.insert(scriptRoots, Path.format(path) .. Path.separator)
+end
+```
+
+
 ## Package Manager
 
 - `fd`
 - `rg`
+- `node`
 
