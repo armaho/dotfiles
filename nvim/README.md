@@ -32,8 +32,8 @@ $ pip install "pygls>=1.1.1, <2.0.0"
 
 ---
 
-Inside `local-lua-debugger-vscode/extension/debugger/lldebugger.lua` there's this loop
-which does not work on lua5.5:
+Inside `local-lua-debugger-vscode/extension/debugger/lldebugger.lua` there's
+this loop which does not work on lua 5.5:
 
 ```lua
 for path in scriptRootsStr:gmatch("[^;]+") do
@@ -50,6 +50,8 @@ for path in scriptRootsStr:gmatch("[^;]+") do
 end
 ```
 
+Here's the related [pull request](https://github.com/tomblind/local-lua-debugger-vscode/pull/90).
+It's not necessary to modify this piece of code if this pull request is merged.
 
 ## Package Manager
 
