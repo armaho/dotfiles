@@ -53,9 +53,16 @@ end
 Here's the related [pull request](https://github.com/tomblind/local-lua-debugger-vscode/pull/90).
 It's not necessary to modify this piece of code if this pull request is merged.
 
+---
+
+Attempting to install `clangd` on Ubuntu26.04 (aarch64) threw `The current platform is unsupported.`. Should be installed with antoher package manager.
+
 ## Package Manager
 
 - `fd`
 - `rg`
 - `node`
+- `npm`
+- `python and python3.x-venv`: version older than 3.14
+- `unzip`
 
