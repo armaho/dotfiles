@@ -63,11 +63,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 })
 
 vim.diagnostic.config({
-  underline = {
-    severity = {
-      min = vim.diagnostic.severity.INFO
-    }
-  },
   virtual_text = {
     prefix = "●",
     spacing = 4,
@@ -82,4 +77,17 @@ vim.diagnostic.config({
   },
   update_in_insert = false,
   severity_sort = true,
+})
+
+-- DiagnosticUnnecessary has a black fg, which doen not look good in ghostty.
+-- We have to set the fg to NONE. The reason I'm doing it on every LspAttach is
+-- that I think something will change the default option in the Lsp, hence
+-- providing a global default was not possible.
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "DiagnosticUnnecessary", {
+      update = true,
+      fg = "NONE",
+    })
+  end
 })
