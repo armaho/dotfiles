@@ -18,8 +18,6 @@ return {
       'marksman',
       'jsonls',
     }
-    for _, lsp in ipairs(lsps) do
-      vim.lsp.enable(lsp)
-    end
+    vim.lsp.enable(lsps)
   end,
 }
