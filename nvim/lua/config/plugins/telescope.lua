@@ -21,7 +21,18 @@ return {
         { desc = "Telescope help tags" }
       )
 
-      vim.keymap.set('n', '<leader>fg', builtin.live_grep,
+      vim.keymap.set('n', '<leader>fg',
+        function()
+          local opts = {}
+          local search_dir = vim.fn.execute("pwd")
+          local dir = vim.fs.basename(search_dir)
+
+          if (dir:find("ros")) then
+            opts.glob_pattern = "!{build,install,log}"
+          end
+
+          builtin.live_grep(opts)
+        end,
         { desc = 'Telescope live grep' }
       )
 
@@ -31,10 +42,17 @@ return {
 
       vim.keymap.set("n", "<leader>ff",
         function()
-          builtin.find_files(
-            {
-              find_command = { "rg", "--files", "--hidden", "--no-require-git" }
-            })
+          local find_command = { "rg", "--files", "--hidden", "--no-require-git" }
+
+          local search_dir = vim.fn.execute("pwd")
+          local dir = vim.fs.basename(search_dir)
+
+          if (dir:find("ros")) then
+            table.insert(find_command, "--glob")
+            table.insert(find_command, "!{build,install,log}")
+          end
+
+          builtin.find_files({ find_command = find_command })
         end,
         { desc = "Telescope find files" }
       )
