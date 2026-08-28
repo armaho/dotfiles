@@ -20,7 +20,6 @@ local function config_debuggers()
   dap.configurations.c = dap.configurations.cpp
   dap.configurations.rust = dap.configurations.cpp
 
-
   local mason = require "mason.settings"
   dap.adapters["local-lua"] = {
     type = "executable",
@@ -40,6 +39,13 @@ local function config_debuggers()
       end
     end,
   }
+  dap.adapters.nlua = function(callback, config)
+    callback({
+      type = 'server',
+      host = config.host or "127.0.0.1",
+      port = config.port or 8086
+    })
+  end
   dap.configurations.lua = {
     {
       type = "local-lua",
@@ -52,6 +58,11 @@ local function config_debuggers()
       },
       args = {},
     },
+    {
+      type = 'nlua',
+      request = 'attach',
+      name = "Attach to running Neovim instance",
+    }
   }
 end
 
@@ -101,7 +112,9 @@ return {
   "mfussenegger/nvim-dap",
   dependencies = {
     "mason-org/mason.nvim",
+    "jbyuki/one-small-step-for-vimkind",
   },
+  lazy = false,
   config = function()
     config_debuggers()
     config_nvim()
