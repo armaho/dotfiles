@@ -102,7 +102,10 @@ return {
           callback = function()
             require("lsp-format-modifications").format_modifications(
               client,
-              bufnr
+              bufnr,
+              {
+                experimental_empty_line_handling = true
+              }
             )
           end,
         })
