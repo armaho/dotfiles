@@ -74,6 +74,7 @@ local function config_nvim()
   }
 
   local function set_debugging_keymaps()
+    print("set_debugging_keymaps called")
     for _, km in ipairs(debugging_keymaps) do
       vim.keymap.set(km.mode, km.lhs, km.rhs, {
         desc = km.desc
@@ -83,14 +84,17 @@ local function config_nvim()
 
   local function remove_debugging_keymaps()
     for _, km in ipairs(debugging_keymaps) do
-      vim.keymap.del(km.mode, km.lhs)
+      local success, result = pcall(vim.keymap.del, km.mode, km.lhs)
+      if not success and not tostring(result):match("No such mapping") then
+        error(result, 0)
+      end
     end
   end
 
   dap.listeners.after.attach.set_keymaps = set_debugging_keymaps
-  dap.listeners.after.launch.dapui_config = set_debugging_keymaps
-  dap.listeners.after.event_terminated.dapui_config = remove_debugging_keymaps
-  dap.listeners.after.event_exited.dapui_config = remove_debugging_keymaps
+  dap.listeners.after.launch.set_keymaps = set_debugging_keymaps
+  dap.listeners.after.event_terminated.remove_keymaps = remove_debugging_keymaps
+  dap.listeners.after.event_exited.remove_keymaps = remove_debugging_keymaps
 end
 
 return {
