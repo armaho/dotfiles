@@ -21,18 +21,7 @@ return {
         { desc = "Telescope help tags" }
       )
 
-      vim.keymap.set('n', '<leader>fg',
-        function()
-          local opts = {}
-          local search_dir = vim.fn.execute("pwd")
-          local dir = vim.fs.basename(search_dir)
-
-          if (dir:find("ros")) then
-            opts.glob_pattern = "!{build,install,log}"
-          end
-
-          builtin.live_grep(opts)
-        end,
+      vim.keymap.set('n', '<leader>fg', builtin.live_grep,
         { desc = 'Telescope live grep' }
       )
 
