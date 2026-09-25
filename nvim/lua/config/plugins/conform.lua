@@ -38,7 +38,6 @@ return {
 				uncrustify = {
 					command = "uncrustify",
 					args = function()
-						print(find_uncrustify_config())
 						return {
 							"-q",
 							"-c",
