@@ -15,6 +15,9 @@ local function config_debuggers()
 			end,
 			cwd = "${workspaceFolder}",
 			stopOnEntry = false,
+			preRunCommands = {
+				"breakpoint name configure --disable cpp_exception",
+			},
 		},
 	}
 	dap.configurations.c = dap.configurations.cpp
